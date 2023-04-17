@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native';
+import { ButtonToucheable } from '../components/ButtonToucheable';
 
 export const ContadorScreen = () => {
 
@@ -7,22 +8,16 @@ export const ContadorScreen = () => {
 
     return <View style={ styles.container }>
         <Text style={ styles.title }>Contador: { contador } </Text>
-        <TouchableOpacity style={ styles.buttonLocationRight }
-            onPress={() => {
-                setContador(contador + 1);
-            }}
-        >
-            <View style={ styles.buttonToucheable }><Text style={ styles.textButton }>+1</Text></View>
-
-        </TouchableOpacity>
-        <TouchableOpacity style={ styles.buttonLocationLeft }
-            onPress={() => {
-                setContador(contador - 1);
-            }}
-        >
-            <View style={ styles.buttonToucheable }><Text style={ styles.textButton }>-1</Text></View>
-
-        </TouchableOpacity>
+        <ButtonToucheable 
+            title="+1"
+            align="right"
+            onPress={ () => setContador( contador + 1 ) }
+        />
+        <ButtonToucheable 
+            title="-1"
+            align="left"
+            onPress={ () => setContador( contador - 1 ) }
+        />
     </View>
 
 };
@@ -36,28 +31,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 40,
         top: -15,
-    },
-    buttonLocationRight: {
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
-    },
-    buttonLocationLeft: {
-        position: 'absolute',
-        bottom: 20,
-        left: 20,
-    },
-    buttonToucheable: {
-        backgroundColor: '#5856D6',
-        width: 70,
-        height: 70,
-        borderRadius: 100,
-        justifyContent: 'center',
-    },
-    textButton: {
-        color: 'white',
-        fontSize: 25,
-        alignSelf: 'center',
-        fontWeight: 'bold',
-    },
+    }
 });
